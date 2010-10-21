@@ -1,13 +1,21 @@
 IpTools
 =======
 
-Introduction goes here.
+IpTools is a Ruby on Rails plugin that provides some useful functionality to the IpAddr class that ships with Ruby.
+
+This plugin creates methods that will return the netmask of an IpAddr object, as well as its prefix (used in CIDR notation), as well as methods to retrieve the inverse mask and broadcast.  These methods simplify working with IpAddr objects, especially when binary arithmetic is required to find IPs within ranges, etc.
 
 
 Example
 =======
 
-Example goes here.
+require "ipaddr"
+require "netmask_tools"
 
+ip = IPAddr.new("192.168.1.0/24", Socket::AF_INET)
 
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+print "#{ip.netmask}\n"     # 255.255.255.0
+print "#{ip.broadcast}\n"   # 192.168.1.255
+print "#{ip.prefix}\n"      # 24
+
+Copyright (c) 2010 Andrew Bates, released under the MIT license
