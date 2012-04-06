@@ -1,0 +1,9 @@
+# name, number, title, has ports
+ip,0,IP,false,
+icmp,1,ICMP,false,
+tcp,6,TCP,true,
+udp,17,UDP,true,
+ipv6,41,IPv6,false,
+gre,47,GRE,false,
+esp,50,ESP,false,
+ah,51,AH,false,
