@@ -1,3 +1,13 @@
+module ProtocolHelper
+  def protocol_name id
+    p = Protocol.find(id)
+    if (p.nil?)
+      return ""
+    end
+    return p.name
+  end
+end
+
 module ActionView
   module Helpers
     module FormHelper
@@ -18,26 +28,3 @@ module ActionView
     end
   end
 end
-
-
-class Protocol
-  attr_reader :id, :name, :title, :ports_allowed
-  def self.all
-    protocols = Array.new
-    protocol_descriptors = arr = IO.readlines(File.join(File.dirname(__FILE__), 'protocols.txt'))
-    protocol_descriptors.each do |line|
-      next if (line =~ /^\s*#/)
-      p = line.split(/,/)
-      protocols.push(Protocol.new(p))
-    end
-    protocols
-  end
-
-  def initialize(params)
-    @name = params[0]
-    @id = params[1]
-    @title = params[2]
-    @ports_allowed = (params[3] == 1 ? true : false)
-  end
-end
-

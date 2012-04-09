@@ -5,7 +5,11 @@ class IpToolsTest < ActiveSupport::TestCase
     validates_ip :ip
   end
 
-  def test_validator
+  class ValidatesProtocolTest < ActiveRecord::Base
+    validates_protocol :protocol_id
+  end
+
+  def test_validates_ip
     model = ValidatesIpTest.new
     model.ip = "0:0:0:0:0:0:0:0"
     assert model.valid?
@@ -48,5 +52,14 @@ class IpToolsTest < ActiveSupport::TestCase
 
     model.ip = "qwerty"
     assert !model.valid?
+  end
+
+  def test_validates_protocol
+    model = ValidatesProtocolTest.new
+    model.protocol_id = "100"
+    assert model.invalid?
+
+    model.protocol_id = "1"
+    assert model.valid?
   end
 end
