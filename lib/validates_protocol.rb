@@ -10,7 +10,7 @@ module ActiveRecord
           #  protocol_id = model.send("#{attr_name}_before_type_cast")
           #end
           if (! value.nil?)
-            protocol = Protocol.find(value)
+            protocol = IPTools::Protocol.find(value)
             if (protocol.nil?)
               model.errors.add(attr_name, "is invalid")
             end

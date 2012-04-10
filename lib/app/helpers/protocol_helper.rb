@@ -1,6 +1,6 @@
 module ProtocolHelper
   def protocol_name id
-    p = Protocol.find(id)
+    p = IPTools::Protocol.find(id)
     if (p.nil?)
       return ""
     end
@@ -12,7 +12,7 @@ module ActionView
   module Helpers
     module FormHelper
       def protocol_select object_name, method, selected=nil, options = {} 
-        option_tags = options_from_collection_for_select(Protocol.all, :id, :title, selected)
+        option_tags = options_from_collection_for_select(IPTools::Protocol.all, :id, :title, selected)
         if (options[:builder].nil?)
           select(object_name, method, option_tags)
         else
